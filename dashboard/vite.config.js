@@ -19,7 +19,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // Fix para a biblioteca MQTT no browser
       './platform/index.js': 'mqtt/dist/mqtt.min.js'
     }
   },

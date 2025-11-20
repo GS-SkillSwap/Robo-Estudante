@@ -186,7 +186,71 @@ loop()
 - `piscarTodosLeds()`: Pisca LEDs em sequência
 - `callback()`: Processa mensagens MQTT recebidas
 
-### Dashboard
+# 📊 Como Executar o Dashboard
+
+O dashboard é uma aplicação web desenvolvida com React e Vite que fornece uma interface visual para monitorar e interagir com o sistema.
+
+## Pré-requisitos
+
+- Node.js (versão 16 ou superior)
+- npm (geralmente vem com o Node.js)
+
+## Passo a Passo
+
+### 1. Clone o Repositório
+
+```bash
+git clone https://github.com/GS-SkillSwap/Robo-Estudante.git
+cd Robo-Estudante
+```
+
+### 2. Acesse a Pasta do Dashboard
+
+```bash
+cd dashboard
+```
+
+### 3. Configure os Endpoints da API
+
+Antes de executar o dashboard, você precisa configurar os IPs dos servidores da API no arquivo `vite.config.js`:
+
+```javascript
+// vite.config.js
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      "/api/orion": {
+        target: "http://SEU_IP:1026", // ← Substitua pelo IP do Orion
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/orion/, ""),
+      },
+      "/api/sth": {
+        target: "http://SEU_IP:8666", // ← Substitua pelo IP do STH
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/sth/, ""),
+      },
+    },
+  },
+});
+```
+
+**Importante:** Substitua `SEU_IP` pelos endereços IP corretos onde seus serviços Orion e STH estão rodando.
+
+### 4. Instale as Dependências
+
+```bash
+npm install
+```
+
+### 5. Execute o Dashboard
+
+```bash
+npm run dev
+```
+
+O dashboard estará disponível em `http://localhost:5173` (ou outra porta indicada no terminal).
+
 
 ## 📄 Licença
 
