@@ -92,7 +92,6 @@ body {
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* Responsividade para mobile */
 @media (max-width: 768px) {
   .main-content {
     grid-template-columns: 1fr;

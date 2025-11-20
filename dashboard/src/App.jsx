@@ -14,13 +14,12 @@ import "./App.css";
 function App() {
   const [historico, setHistorico] = useState([]);
   const [tempoFora, setTempoFora] = useState(0);
-  const [tempoEstudando, setTempoEstudando] = useState(0); // Nova métrica
+  const [tempoEstudando, setTempoEstudando] = useState(0);
   const [vezesSaiu, setVezesSaiu] = useState(0);
   const [distanciaAtual, setDistanciaAtual] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Configurações
-  const LIMIT_DISTANCIA = 120; // cm
+  const LIMIT_DISTANCIA = 120;
   const DEVICE_ID = "urn:ngsi-ld:RoboEstudante:001";
 
   const FIWARE_HEADERS = {
@@ -28,7 +27,6 @@ function App() {
     "fiware-servicepath": "/",
   };
 
-  // Função auxiliar para formatar o tempo (ex: 1h 30m 15s)
   const formatarTempo = (segundos) => {
     if (!segundos) return "0s";
     const h = Math.floor(segundos / 3600);
@@ -56,14 +54,12 @@ function App() {
         const valores =
           dataHist.contextResponses[0].contextElement.attributes[0].values;
 
-        // Mapeia mantendo o objeto Date real para cálculos precisos
         const dadosProcessados = valores.map((item) => ({
           rawDate: new Date(item.recvTime),
           label: new Date(item.recvTime).toLocaleTimeString(),
           valor: parseFloat(item.attrValue),
         }));
 
-        // Garante ordenação cronológica (antigo -> novo)
         dadosProcessados.sort((a, b) => a.rawDate - b.rawDate);
 
         setHistorico(dadosProcessados.map(d => ({ data: d.label, valor: d.valor })));
@@ -72,22 +68,17 @@ function App() {
           setDistanciaAtual(dadosProcessados[dadosProcessados.length - 1].valor);
         }
 
-        // --- NOVA LÓGICA DE CÁLCULO ---
         let somaTempoFora = 0;
         let somaTempoEstudando = 0;
         let contadorSaidas = 0;
         let estavaFora = false;
 
-        // Percorre o histórico comparando o ponto atual com o anterior
         for (let i = 1; i < dadosProcessados.length; i++) {
           const atual = dadosProcessados[i];
           const anterior = dadosProcessados[i - 1];
           
-          // Calcula a diferença de tempo em segundos entre as medições
           const diffSegundos = (atual.rawDate - anterior.rawDate) / 1000;
           
-          // Filtra "pulos" muito grandes (ex: sistema ficou desligado) para não sujar a métrica
-          // Se a diferença for maior que 60s, ignoramos esse intervalo no somatório
           if (diffSegundos < 60) {
             if (atual.valor > LIMIT_DISTANCIA) {
               somaTempoFora += diffSegundos;
@@ -96,7 +87,6 @@ function App() {
             }
           }
 
-          // Lógica de contagem de saídas (levantou da cadeira)
           if (atual.valor > LIMIT_DISTANCIA) {
             if (!estavaFora) {
               contadorSaidas++;
@@ -131,7 +121,6 @@ function App() {
       </header>
 
       <div className="metrics-grid">
-        {/* Card: Tempo Fora */}
         <div className="card metric-card">
           <div className="icon-bg orange">
             <Clock size={32} />
@@ -143,7 +132,6 @@ function App() {
           </div>
         </div>
 
-        {/* NOVO Card: Tempo Estudando */}
         <div className="card metric-card">
           <div className="icon-bg blue">
             <Trophy size={32} />
@@ -155,7 +143,6 @@ function App() {
           </div>
         </div>
 
-        {/* Card: Saídas */}
         <div className="card metric-card">
           <div className="icon-bg blue" style={{backgroundColor: '#8b5cf6'}}> 
             <DoorOpen size={32} />
@@ -167,7 +154,6 @@ function App() {
           </div>
         </div>
 
-        {/* Card: Status Atual */}
         <div className="card metric-card">
           <div className={`icon-bg ${distanciaAtual < LIMIT_DISTANCIA ? 'green' : 'orange'}`}>
             <Activity size={32} />
@@ -193,7 +179,7 @@ function App() {
                 <YAxis />
                 <Tooltip />
                 <Line
-                  type="stepAfter" // stepAfter mostra melhor as mudanças de estado bruscas
+                  type="stepAfter"
                   dataKey="valor"
                   stroke="#2563eb"
                   strokeWidth={2}
