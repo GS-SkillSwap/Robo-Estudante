@@ -186,7 +186,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   Serial.println(mensagem);
 
-  //if (mensagem.indexOf("conquista") > 0) {
+  if (mensagem.indexOf("conquista") > 0) {
     dispararConquista();
     
     char topico_resposta[100];
@@ -197,7 +197,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     sprintf(payload_resposta, "conquista|%s", "OK");
     
     client.publish(topico_resposta, payload_resposta);
-  //}
+  }
 }
 
 void reconnect() {
