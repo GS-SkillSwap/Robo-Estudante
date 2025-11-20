@@ -6,9 +6,34 @@ Um projeto IoT educacional que combina ESP32, sensores e comunicação MQTT para
 
 O **Robô Estudante** é um dispositivo IoT educacional desenvolvido com ESP32 que monitora a presença do estudante através de um sensor ultrassônico e responde a comandos MQTT. Quando o estudante alcança conquistas acadêmicas, o robô celebra com animações visuais no display OLED e efeitos de LED.
 
+## 👥 Autores
+
+- [Eduardo Ulisses - 566339]
+- [Fernando Bellegarde - 564169]
+- [Otávio Inaba - 565003]
+
+## 🎬 Demonstração
+
+### 📹 Vídeo Demonstrativo
+
+Assista ao funcionamento completo do projeto:
+
+[![Demonstração Robô Estudante](https://img.youtube.com/vi/67HnZk1ooX8/0.jpg)](https://youtu.be/67HnZk1ooX8)
+
+**Link direto**: https://youtu.be/67HnZk1ooX8
+
+### 🔌 Simulação Online
+
+Experimente o projeto no Wokwi (simulador online):
+
+[![Simular no Wokwi](https://img.shields.io/badge/Wokwi-Simular%20Projeto-green?style=for-the-badge&logo=wokwi)](https://wokwi.com/projects/447468810806870017)
+
+**Link direto**: https://wokwi.com/projects/447468810806870017
+
 ### Objetivo
 
 Criar um sistema gamificado que:
+
 - Monitora a presença e engajamento do estudante
 - Celebra conquistas acadêmicas de forma lúdica
 - Oferece feedback visual motivacional
@@ -19,7 +44,7 @@ Criar um sistema gamificado que:
 - **Monitoramento de Presença**: Sensor ultrassônico HC-SR04 detecta a distância do estudante
 - **Conexão IoT**: Comunicação via protocolo MQTT
 - **Feedback Visual**: Display OLED SSD1306 128x64 exibe status e animações
-- **Celebração de Conquistas**: 
+- **Celebração de Conquistas**:
   - Animação de rostinho feliz no display
   - Piscar sincronizado de LEDs coloridos (verde, azul e vermelho)
 - **Telemetria**: Envia dados de distância a cada 5 segundos
@@ -27,15 +52,15 @@ Criar um sistema gamificado que:
 
 ## 🔧 Componentes Utilizados
 
-| Componente | Quantidade | Descrição |
-|------------|------------|-----------|
-| ESP32 | 1 | Microcontrolador principal |
-| Display OLED SSD1306 | 1 | Tela 128x64 para feedback visual |
-| Sensor HC-SR04 | 1 | Sensor ultrassônico de distância |
-| LED Verde | 1 | Indicador visual |
-| LED Azul | 1 | Indicador visual |
-| LED Vermelho | 1 | Indicador visual |
-| Resistores | 3 | Para limitação de corrente dos LEDs |
+| Componente           | Quantidade | Descrição                           |
+| -------------------- | ---------- | ----------------------------------- |
+| ESP32                | 1          | Microcontrolador principal          |
+| Display OLED SSD1306 | 1          | Tela 128x64 para feedback visual    |
+| Sensor HC-SR04       | 1          | Sensor ultrassônico de distância    |
+| LED Verde            | 1          | Indicador visual                    |
+| LED Azul             | 1          | Indicador visual                    |
+| LED Vermelho         | 1          | Indicador visual                    |
+| Resistores           | 3          | Para limitação de corrente dos LEDs |
 
 ### Pinagem
 
@@ -50,6 +75,8 @@ GPIO 21   -->  OLED SDA
 GPIO 22   -->  OLED SCL
 ```
 
+![alt text](/docs/image.png)
+
 ## 🏗️ Arquitetura
 
 O projeto utiliza uma arquitetura IoT com três camadas:
@@ -60,24 +87,7 @@ O projeto utiliza uma arquitetura IoT com três camadas:
 
 ### Fluxo de Dados
 
-![alt text](<Captura de tela 2025-11-19 191156.png>)
-
-## 🎬 Demonstração
-
-### 📹 Vídeo Demonstrativo
-Assista ao funcionamento completo do projeto:
-
-[![Demonstração Robô Estudante](https://img.youtube.com/vi/67HnZk1ooX8/0.jpg)](https://youtu.be/67HnZk1ooX8)
-
-**Link direto**: https://youtu.be/67HnZk1ooX8
-
-### 🔌 Simulação Online
-
-Experimente o projeto no Wokwi (simulador online):
-
-[![Simular no Wokwi](https://img.shields.io/badge/Wokwi-Simular%20Projeto-green?style=for-the-badge&logo=wokwi)](https://wokwi.com/projects/447468810806870017)
-
-**Link direto**: https://wokwi.com/projects/447468810806870017
+![alt text](</docs/Captura de tela 2025-11-19 191156.png>)
 
 ## 🚀 Como Usar
 
@@ -104,6 +114,7 @@ No Arduino IDE, vá em **Sketch > Incluir Biblioteca > Gerenciar Bibliotecas** e
 ### Upload do Código
 
 1. Clone este repositório:
+
 ```bash
 git clone https://github.com/GS-SkillSwap/Robo-Estudante.git
 cd Robo-Estudante
@@ -175,23 +186,11 @@ loop()
 - `piscarTodosLeds()`: Pisca LEDs em sequência
 - `callback()`: Processa mensagens MQTT recebidas
 
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fazer um Fork do projeto
-2. Criar uma Branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a Branch (`git push origin feature/NovaFuncionalidade`)
-5. Abrir um Pull Request
+### Dashboard
 
 ## 📄 Licença
 
 Este projeto está sob a licença especificada no repositório.
-
-## 👥 Autores
-
-Desenvolvido pela equipe **GS-SkillSwap**
 
 ## 🔗 Links Úteis
 
@@ -200,10 +199,6 @@ Desenvolvido pela equipe **GS-SkillSwap**
 - [Simulação Wokwi](https://wokwi.com/projects/447468810806870017)
 - [Documentação ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
 - [MQTT.org](https://mqtt.org/)
-
-## 📞 Suporte
-
-Se tiver dúvidas ou sugestões, abra uma [Issue](https://github.com/GS-SkillSwap/Robo-Estudante/issues) no GitHub.
 
 ---
 
